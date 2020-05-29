@@ -1,0 +1,245 @@
+<html>
+<meta charset=utf-8>
+
+<head>
+	<title>
+		Weaponry
+	</title>
+	<style>
+		body {
+			background-size: cover;
+			height: 100%;
+			margin: 0;
+			color: white;
+			overflow: hidden;
+			font-family: sans-serif;
+		}
+
+		.player {
+			position: absolute;
+			top: 30%;
+			left: 30%;
+			width: 167px;
+			height: 390px;
+			background-image: url(classD.png);
+			background-size: cover;
+			transition: 0.5s;
+		}
+
+		.msg {
+			position: absolute;
+			top: 15%;
+			left: 10%;
+			display: none;
+			padding: 5px 5px;
+			border-radius: 10px;
+			background-color: #222;
+		}
+
+		.mind {
+			position: absolute;
+			top: 25%;
+			left: 15%;
+			display: none;
+			padding: 5px 5px;
+			border-radius: 10px;
+			background-color: #222;
+		}
+
+		.dog {
+			position: absolute;
+			top: 70%;
+			left: 50%;
+			width: 500px;
+			height: 400px;
+			display: none;
+			background-image: url(939-53.png);
+			background-size: cover;
+			transition: 0.5s;
+		}
+
+		.button {
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			display: none;
+			transition: 0.5s;
+			cursor: pointer;
+		}
+
+		.inventory {
+			position: absolute;
+			top: 0;
+			left: 47%;
+			width: 5%;
+			height: 10%;
+			border: 1px solid white;
+			background-size: cover;
+			transition: 0.5s;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		.btn {
+			position: absolute;
+			transition: 0.5s;
+			opacity: 40%;
+			background-color: white;
+			display: none;
+			border: 0;
+			font-size: 20px;
+			border-radius: 10px;
+			padding: 10px 10px;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			opacity: 100%;
+		}
+
+		.action1 {
+			left: 42%;
+			top: 60%
+		}
+
+		.action2 {
+			left: 60%;
+			top: 40%
+		}
+		
+		.time {
+			display: none;
+		}
+	</style>
+</head>
+
+<body class="body" style="background-image: url(startBg.jpg)">
+	<div class="player"></div>
+	<div class="msg"></div>
+	<div class="dog"></div>
+	<div class="mind"></div>
+	<div class="button"></div>
+	<div class="inventory" style=""></div>
+	<button class="action1 btn">Спокойно обойти</button>
+	<button class="action2 btn">Быстро пробежать</button>
+	<h1 class="time">До закрытия дверей: <span class="timeTab">0</span></h1>
+	<script>
+		let body = document.querySelector('.body')
+		let tmTab = document.querySelector('.timetab')
+		let msg = document.querySelector('.msg')
+		let button = document.querySelector('.button')
+		let mind = document.querySelector('.mind')
+		let player = document.querySelector('.player')
+		let inventory = document.querySelector('.inventory')
+		let dog = document.querySelector('.dog')
+		let timee = document.querySelector('.time')
+		let action1 = document.querySelector('.action1')
+		let action2 = document.querySelector('.action2')
+		mind.style.display = 'block'
+		mind.innerHTML = 'Ха-ха, вот тот охранник дурачок...'
+		let showInstruct = function() {
+			msg.style.display = 'block'
+			msg.style.padding = '15px 15px'
+			msg.innerHTML = "Солдаты Мобильной Опергруппы Эпсилон-11,"
+			mind.style.display = 'none'
+			let switchText1 = function() {
+				msg.innerHTML = 'отряда "Девятихвостая лиса", вошли в Комплекс.'
+			}
+			let switchText2 = function() {
+				msg.innerHTML = 'Все оставшиеся выжившие должны оставаться в бункере'
+			}
+			let switchText3 = function() {
+				msg.innerHTML = 'или любом другом безопасном месте, пока отряд МОГ'
+			}
+			let switchText4 = function() {
+				msg.innerHTML = 'не очистит Комплекс от опасности. Мы начнем выводить персонал,'
+			}
+			let switchText5 = function() {
+				msg.innerHTML = 'когда сбежавшие SCP-объекты будут снова удержаны.'
+			}
+			let hideMsg = function() {
+				msg.style.display = 'none'
+			}
+			setTimeout(switchText1, 2000)
+			setTimeout(switchText2, 4000)
+			setTimeout(switchText3, 6000)
+			setTimeout(switchText4, 8000)
+			setTimeout(switchText5, 10000)
+			setTimeout(hideMsg, 13000)
+		}
+		let showMinds = function() {
+			mind.style.display = 'block'
+			mind.style.padding = '15px 15px'
+			mind.innerHTML = 'Они не оставят меня в живых. Нужно найти оружие и идти наружу самому. Сзади вроде оружейная'
+			let hideMinds = function() {
+				let time = 20
+				mind.style.display = 'none'
+				body.style.backgroundImage = 'url(weaponry.webp)'
+				player.style.display = 'none'
+				button.style.display = 'block'
+				button.onclick = function() {
+					timee.style.display = 'block'
+					let timer = function() {
+						time = time - 1
+						tmTab.innerHTML = time
+						if (time == 0) {
+							alert("Двери закрылись")
+							clearInterval(stop)
+							location.reload()
+						}
+					}
+					let stop = setInterval(timer, 1000)
+					body.style.backgroundImage = 'url(startBg.jpg)'
+					button.style.display = 'none'
+					inventory.style.backgroundImage = 'url(gun.png)'
+					player.style.display = 'block'
+					dog.style.display = 'block'
+					mind.style.display = 'block'
+					mind.innerHTML = 'Так, это SCP-939... Нужно лишь не шуметь'
+					mind.style.left = '30%'
+					inventory.onclick = function() {
+						alert('SCP-939 почувствовал то, как ты достал оружие и растерзал тебя')
+						location.reload()
+					}
+					action1.style.display = 'block'
+					action2.style.display = 'block'
+					action1.onclick = function() {
+						player.style.transition = '5s'
+						player.style.left = '35%'
+						player.style.top = '70%'
+						player.style.width = '241px'
+						player.style.height = '562px'
+						action1.style.display = 'none'
+						action2.style.display = 'none'
+						mind.style.display = 'none'
+						let switchLoc = function() {
+							location.href = 'loc4.html'
+						}
+						setTimeout(switchLoc, 5000)
+					}
+					action2.onclick = function() {
+						player.style.transition = '1s'
+						player.style.left = '35%'
+						player.style.top = '70%'
+						player.style.width = '241px'
+						player.style.height = '562px'
+						dog.style.left = '40%'
+						action1.style.display = 'none'
+						action2.style.display = 'none'
+						mind.style.display = 'none'
+						let Message = function() {
+							alert('Тело D-5912 было найдено растерзанным в комнате Оружейной')
+							location.reload()
+						}
+						setTimeout(Message, 1500)
+					}
+				}
+			}
+			setTimeout(hideMinds, 4000)
+		}
+		setTimeout(showInstruct, 2000)
+		setTimeout(showMinds, 13000)
+	</script>
+</body></html>

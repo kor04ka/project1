@@ -1,0 +1,182 @@
+<html>
+<meta charset=utf-8>
+
+<head>
+	<title>
+		Heavy Containment Zone
+	</title>
+	<style>
+		body {
+			background-size: cover;
+			height: 100%;
+			margin: 0;
+			color: white;
+			overflow: hidden;
+			font-family: sans-serif;
+		}
+
+		.inventory {
+			position: absolute;
+			top: 0;
+			left: 47%;
+			width: 5%;
+			height: 10%;
+			border: 1px solid white;
+			background-size: cover;
+			transition: 0.5s;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		.sensor {
+			position: absolute;
+			top: 50%;
+			left: 45%;
+			width: 10%;
+			height: 10%;
+			transition: 0.5s;
+			cursor: pointer;
+		}
+
+		.player {
+			position: absolute;
+			top: 40%;
+			left: 35%;
+			width: 241px;
+			height: 562px;
+			background-image: url(classD.png);
+			background-size: cover;
+		}
+
+		.guard {
+			position: absolute;
+			top: 40%;
+			left: 20%;
+			width: 137px;
+			height: 312px;
+			display: none;
+			background-image: url(guard.png);
+			background-size: cover;
+		}
+
+		.guard-msg {
+			position: absolute;
+			top: 40%;
+			left: 27%;
+			display: none;
+			padding: 5px 5px;
+			border-radius: 20px;
+			background-color: #222;
+		}
+
+		.btn {
+			position: absolute;
+			transition: 0.5s;
+			opacity: 40%;
+			background-color: white;
+			display: none;
+			border: 0;
+			font-size: 20px;
+			border-radius: 10px;
+			padding: 10px 10px;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			opacity: 100%;
+		}
+
+		.prikaz1 {
+			left: 42%;
+			top: 60%
+		}
+
+		.prikaz2 {
+			left: 60%;
+			top: 40%
+		}
+		
+		.card{
+			position: absolute;
+			top: 79%;
+			left: 50%;
+			width: 50px;
+			display: none;
+		}
+	</style>
+</head>
+
+<body class="body" style="background-image: url(heavy.png)">
+	<div class="inventory"></div>
+	<div class="sensor"></div>
+	<div class="player"></div>
+	<div class="guard"></div>
+	<button class="prikaz1 btn">Остаться</button>
+	<button class="prikaz2 btn">Сбежать</button>
+	<div class="guard-msg">
+		<p>Стоять смирно!</p>
+	</div>
+	<img src="O5.webp" alt="" class="card">
+	<script>
+		let body = document.querySelector('.body')
+		let player = document.querySelector('.player')
+		let sensor = document.querySelector('.sensor')
+		let click = 0
+		let guard = document.querySelector('.guard')
+		let inventory = document.querySelector('.inventory')
+		let prikaz1 = document.querySelector('.prikaz1')
+		let prikaz2 = document.querySelector('.prikaz2')
+		let msg = document.querySelector('.guard-msg')
+
+		let card = document.querySelector('.card')
+		inventory.style.backgroundImage = 'url(O5.webp)'
+		inventory.onclick = function() {
+			click = 1
+			inventory.style.backgroundImage = 'none'
+		}
+		sensor.onclick = function() {
+			if (click == 1) {
+				sensor.style.display = 'none'
+				body.style.backgroundImage = 'url(heavy2.png)'
+				player.style.left = '50%'
+				player.style.top = '40%'
+				player.style.width = '167px'
+				player.style.height = '390px'
+				guard.style.display = 'block'
+				prikaz1.style.display = 'block'
+				prikaz2.style.display = 'block'
+				inventory.style.display = 'none'
+				msg.style.display = 'block'
+			}
+			let kill = function(){
+				msg.innerHTML
+			}
+			prikaz1.onclick = function() {
+				msg.style.left = '40%'
+				msg.style.top = '35%'
+				guard.style.left = '40%'
+				msg.innerHTML = 'Выкидывай все из карманов'
+				msg.style.padding = '10px 10px'
+				prikaz1.style.display = 'none'
+				let msgSwitch = function() {
+					msg.innerHTML = 'Откуда у тебя... У НЕГО ЧЕРНАЯ КАРТА!!!'
+					card.style.display = 'block'
+				}
+				let kill = function() {
+					alert('D-5912 был убит от огнестрельного ранения в голову')
+					location.reload()
+				}
+				setTimeout(msgSwitch, 4000)
+				setTimeout(kill, 5000)
+				prikaz2.onclick = function() {
+					alert('D-5912 успешно сбежал')
+					location.href = "loc3.html"
+				}
+			}
+			prikaz2.onclick = function() {
+				alert('D-5912 почти сбежал, но получил огнестрельное ранение в голову')
+				location.reload()
+			}
+		}
+	</script>
+</body></html>

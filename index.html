@@ -1,0 +1,45 @@
+<html>
+<meta charset=utf-8>
+
+<head>
+	<title>
+		
+	</title>
+	<style>
+		body{
+			background-size: cover;
+			height: 100%;
+			margin: 0;
+			color: white;
+			overflow: hidden;
+		}
+		.startMenu{
+			opacity: 0%;
+			transition: 0.5s;
+			background-color: white;
+			height: 100%;
+			cursor: pointer;
+		}
+		.startMenu:hover{
+			opacity: 10%;
+		}
+	</style>
+</head>
+
+<body class="body" style="background-image: url(menuBg.jpg)">
+	<div class="startMenu"></div>
+	<script>
+		let startMenu = document.querySelector(".startMenu")
+		startMenu.onclick = function(){
+			startMenu.style.transition = '2s'
+			startMenu.style.opacity = 100
+			startMenu.style.backgroundColor = 'black'
+			let href = function(){
+				location.href = "loc1.html"
+			}
+			setTimeout(href, 3000)
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,175 @@
+<html>
+<meta charset=utf-8>
+
+<head>
+	<title>
+		Gate A
+	</title>
+	<style>
+		body {
+			background-size: cover;
+			height: 100%;
+			margin: 0;
+			color: white;
+			overflow: hidden;
+			font-family: sans-serif;
+			background-color: black;
+		}
+
+		.player {
+			position: absolute;
+			top: 30%;
+			left: 45%;
+			width: 167px;
+			height: 390px;
+			background-image: url(classD.png);
+			background-size: cover;
+			transition: 6s;
+		}
+
+		.msg {
+			position: absolute;
+			top: 15%;
+			left: 10%;
+			display: none;
+			padding: 5px 5px;
+			border-radius: 10px;
+			background-color: #222;
+		}
+
+		.mind {
+			position: absolute;
+			top: 35%;
+			left: 25%;
+			display: none;
+			padding: 5px 5px;
+			border-radius: 10px;
+			background-color: #222;
+		}
+
+		.inventory {
+			position: absolute;
+			top: 0;
+			left: 47%;
+			width: 5%;
+			height: 10%;
+			border: 1px solid white;
+			background-size: cover;
+			transition: 0.5s;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		.btn {
+			position: absolute;
+			transition: 0.5s;
+			opacity: 40%;
+			background-color: white;
+			display: none;
+			border: 0;
+			font-size: 20px;
+			border-radius: 10px;
+			padding: 10px 10px;
+			cursor: pointer;
+		}
+
+		.btn:hover {
+			opacity: 100%;
+		}
+
+		.action1 {
+			left: 32%;
+			top: 90%
+		}
+
+		.action2 {
+			left: 70%;
+			top: 45%
+		}
+
+		.button {
+			position: absolute;
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			display: none;
+			transition: 0.5s;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body class='body' style="background-image: url(office.jpg)">
+	<div class="player"></div>
+	<div class="inventory" style="background-image: url(O5.webp)"></div>
+	<div class="button"></div>
+	<button class="btn action1">Помочь своим</button>
+	<button class="btn action2">Уйти в лифт</button>
+	<div class="mind"></div>
+	<script>
+		let body = document.querySelector('.body')
+		let player = document.querySelector('.player')
+		let inventory = document.querySelector('.inventory')
+		let access = document.querySelector('.button')
+		let action1 = document.querySelector('.action1')
+		let action2 = document.querySelector('.action2')
+		let mind = document.querySelector('.mind')
+		let step = function() {
+			player.style.width = '1000px'
+			player.style.height = '2400px'
+			player.style.top = '110%'
+			player.style.left = '30%'
+		}
+		let switchBg = function() {
+			body.style.backgroundImage = 'url(gateA.png)'
+			inventory.onclick = function() {
+				inventory.style.backgroundImage = 'none'
+				access.style.display = 'block'
+				access.onclick = function() {
+					mind.style.display = 'block'
+					mind.innerHTML = 'Там остались остальные коллеги. Может, стоит помочь им?.'
+					mind.style.padding = '10px 10px'
+					body.style.backgroundImage = 'url(gateAopen.jpg)'
+					access.style.display = 'none'
+					inventory.style.display = 'none'
+					action1.style.display = 'block'
+					action2.style.display = 'block'
+					action1.onclick = function() {
+						body.style.transition = '2s'
+						body.style.backgroundImage = 'url(black.png)'
+						body.style.opacity = '0%'
+						let switchBg = function() {
+							alert('D-5912 погиб от огнестрельного ранения в грудь во время перестрелки.')
+							body.style.backgroundColor = 'black'
+							location.href = 'index.html'
+						}
+						setTimeout(switchBg, 3000)
+						let switchh = function() {
+							body.style.backgroundImage = 'none'
+						}
+						setTimeout(switchh, 2000)
+					}
+					action2.onclick = function() {
+						body.style.transition = '2s'
+						body.style.backgroundImage = 'url(black.png)'
+						body.style.opacity = '0%'
+						let switchBg = function() {
+							alert('D-5912 был связан и сопровожден со всеми другими сотрудниками класса D. В дальнейшем тот будет освобожден после выдачи информации.')
+							body.style.backgroundColor = 'black'
+							location.href = 'index.html'
+						}
+						setTimeout(switchBg, 3000)
+						let switchh = function() {
+							body.style.backgroundImage = 'none'
+						}
+						setTimeout(switchh, 2000)
+					}
+				}
+			}
+		}
+		setTimeout(step, 1000)
+		setTimeout(switchBg, 4000)
+	</script>
+</body>
+</html>
